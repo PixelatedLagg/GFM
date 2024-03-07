@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>GFM Calculator</title>
+        <meta charset="utf-8">
+        <meta name="phone" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="index.css">
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <div class="main">
+            <form id="form">
+                <input type="text" id="input" autocomplete="off" placeholder=". . ."/>
+                <input type="submit" style="display: none;"/>
+            </form>
+            <h3 id="gfm">GFM: null</h3>
+            <label>
+                <input type="checkbox" id="lowercase">
+                Lowercase mode (will not work with majority of compounds)
+            </label>
+            <label style="margin-top: 21px;">
+                <input type="checkbox" id="sigfigs">
+                Use significant figures
+            </label>
+            <label id="sigfigsdiv" style="display: none;">
+                <input type="number" id="sigfigsnum" min="0" value="2">
+                # of significant figures
+            </label>
+        </div>
+    </body>
+    <script>
+        document.getElementById('sigfigs').addEventListener('change', function()
+        {
+            useSigFigs = !useSigFigs;
+            document.getElementById('sigfigsdiv').style.display = useSigFigs ? 'flex' : 'none';
+        });
+        document.getElementById('lowercase').addEventListener('change', function()
+        {
+            lowercase = !lowercase;
+        });
+    </script>
+</html>
