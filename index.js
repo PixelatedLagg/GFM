@@ -176,6 +176,10 @@ function parseChemicalCompound(compound)
 
 function calculateGramFormulaMass(compound)
 {
+    if (/[A-Z]/.test(compound) && lowercase || (!/[A-Z]/.test(compound) && !lowercase)) //check if all lowercase
+    {
+        return "error";
+    }
     const elements = parseChemicalCompound(compound);
     let mass = 0;
     for (const element in elements)
@@ -186,7 +190,6 @@ function calculateGramFormulaMass(compound)
         }
         else
         {
-            console.error(`Atomic mass for element ${element} not found.`);
             return null;
         }
     }
@@ -195,16 +198,21 @@ function calculateGramFormulaMass(compound)
 
 function calculateGramFormulaMassSigFigs(compound, sigfigs)
 {
+    if (/[A-Z]/.test(compound) && lowercase || (!/[A-Z]/.test(compound) && !lowercase)) //check if all lowercase
+    {
+        document.getElementById("gfm").textContent = `GFM: error`;
+        return;
+    }
     const elements = parseChemicalCompound(compound);
     let mass = 0;
-    for (const element in elements) {
+    for (const element in elements)
+    {
         if (atomicMasses[element])
         {
             mass += atomicMasses[element] * elements[element];
         }
         else
         {
-            console.error(`Atomic mass for element ${element} not found.`);
             return null;
         }
     }
